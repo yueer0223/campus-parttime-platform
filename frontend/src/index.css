@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-iris-50: #f6f4fc;
+  --color-iris-100: #ede9fa;
+  --color-iris-200: #dcd3f5;
+  --color-iris-300: #c1b1ed;
+  --color-iris-400: #a18ce0;
+  --color-iris-500: #7c5fd8;
+  --color-iris-600: #6949c6;
+  --color-iris-700: #563aa8;
+  --color-iris-800: #442e85;
+  --color-iris-900: #342266;
+
+  --color-cream: #fbf8f2;
+  --color-cream-50: #fdfcf9;
+  --color-cream-100: #f4efe5;
+
+  --color-ink: #2a2636;
+  --color-ink-soft: #5b5670;
+  --color-ink-muted: #8a85a0;
+
+  --color-success: #2f9e6e;
+  --color-success-bg: #e9f5f0;
+  --color-info: #3b7bc9;
+  --color-info-bg: #eaf2fb;
+  --color-warning: #b9822a;
+  --color-warning-bg: #faf1e2;
+  --color-danger: #d64554;
+  --color-danger-bg: #fcebec;
+
+  --font-display: "Songti SC", "STSong", "SimSun", "Noto Serif SC", serif;
+  --font-sans: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+
+  --shadow-soft: 0 8px 30px rgba(86, 58, 168, 0.08);
+  --shadow-diffuse: 0 18px 50px rgba(86, 58, 168, 0.12);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* 柔和浅色背景场景（首页与登录页） */
+.bg-soft-scene {
+  background:
+    radial-gradient(1100px 560px at 88% -8%, rgba(124, 95, 216, 0.12), transparent 60%),
+    radial-gradient(900px 520px at -6% 8%, rgba(193, 177, 237, 0.18), transparent 56%),
+    linear-gradient(180deg, #fdfcf9 0%, #f6f1e8 100%);
+}
+
+/* 毛玻璃卡片（仅首页/登录页使用） */
+.glass-card {
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+/* 任务广场瀑布流 */
+.masonry {
+  column-count: 1;
+  column-gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.splash-title {
+  animation: splash-fade-in 0.9s ease-out 0.2s both;
+}
+
+.splash-fade {
+  animation: splash-fade-in 0.9s ease-out 0.7s both;
+}
+
+@keyframes splash-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
