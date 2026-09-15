@@ -46,8 +46,9 @@ export default function Layout() {
     if (!user) return
     const token = localStorage.getItem('token')
     if (!token) return
-    const proto = location.protocol === 'https:' ? 'wss' : 'ws'
-    const ws = new WebSocket(`${proto}://${location.host}/api/ws?token=${token}`)
+    const apiUrl = import.meta.env.VITE_API_URL || `${location.protocol}//${location.host}`
+    const wsUrl = apiUrl.replace(/^http/, 'ws')
+    const ws = new WebSocket(`${wsUrl}/api/ws?token=${token}`)
     ws.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data)
